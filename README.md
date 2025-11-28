@@ -23,178 +23,180 @@ Add your timetable using `<td>` tag.
 Execute the program using runserver command.
 
 # PROGRAM
+'''views.py
+def slot(request):
+    return render(request,'slot.html')
+'''
+'''urls.py
+from Django.contrib import admin
+from Django.urls import path
+from slotapp import views
+git push
+urlpatterns = [
+
+    path('admin/', admin.site.urls),
+
+    path('tt/', views.slot)
+
+]
+'''
+
+
 ```html
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <title>Time Table</title>
-    <style>
-        body {
-            font-family: "Cambria", serif;
-            margin: 0;
-            padding: 20px;
-            background-image: url("/static/bgimg.png");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-attachment: fixed;
-        }
+  <title>MY TIME TABLE</title>
+  <link rel="icon" type="image/png" href="./logo.png">
+  <style>
+    body {
+      background-image: url("bgimg.jpeg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      margin: 0;
+      padding: 0;
+      font-family: "Cambria", serif;
+    }
 
-        img {
-            display: block;
-            margin: 0 auto 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    table, th, td {
+      border: 3px solid black;
+      width: 100px;
+      border-collapse: collapse;
+      margin: 20px;
+      font-style: initial;
+      background-color: aqua;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-        }
+    th {
+      background-color: antiquewhite;
+    }
 
+    td {
+      background-color: aliceblue;
+    }
 
-        table {
-            width: 70%;
-            height: 30%;
-            margin: 25px auto;
-            border-collapse: collapse;
-            background: ghostwhite;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
+    caption {
+      font-size: 20px;
+      margin: 10px;
+      background-color: blue;
+      color: white;
+    }
 
-        caption {
-            font-size: 26px;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
+    span {
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      letter-spacing: 10px;
+    }
 
-        th {
-            background: #34495e;
-            color: white;
-            padding: 12px;
-            font-size: 17px;
-        }
+    img {
+      display: block;
+      width: 850px;
+      height: 200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-        td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: center;
-            font-size: 16px;
-        }
+    table {
+      width: 600px;
+    }
 
-        tr:nth-child(even) td {
-            background: #f2f6fa;
-        }
-
-        tr:hover td {
-            background: #eaf2ff;
-            transition: 0.2s;
-        }
-
-        .lunch {
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-            font-weight: bold;
-            background: #ffe6cc !important;
-            color: #b85c00;
-            font-size: 20px;
-            letter-spacing: 8px;
-            /* spacing between letters */
-            text-align: center;
-        }
-    </style>
+    td[rowspan] {
+      text-align: center;
+      vertical-align: middle;
+    }
+  </style>
 </head>
 
 <body>
-    <center>
-        <img src="./logo.png" width="700" height="100">
-    </center>
-    <br>
-    <table align="center" width="540" cellspacing="2" cellpadding="4" border="5" bgcolor="blue">
-        <caption>Time Table</caption>
-        <tr>
-            <th>Day/Time</th>
-            <th>8-10</th>
-            <th>10-12</th>
-            <th>12-1</th>
-            <th>1-3</th>
-            <th>3-5</th>
-        </tr>
+  <img src="./logo.png">
+  <h1 style="text-align: center;">MY TIME TABLE</h1>
 
-        <tr>
-            <td style="background-color: ghostwhite;">MONDAY</td>
-            <td colspan="2">FREE SLOT</td>
-            <td rowspan="6" class="lunch"><span>LUNCH</span></td>
-            <td colspan="2">PYTHON</td>
+  <table>
+    <tr>
+      <th>days/time</th>
+      <th>8:00-10:00</th>
+      <th>10:00-12:00</th>
+      <th>12:00-1:00</th>
+      <th>1:00-3:00</th>
+      <th>3:00-5:00</th>
+    </tr>
 
-        </tr>
+    <tr>
+      <td style="background-color: aqua;">MONDAY</td>
+      <td>FREE SLOT</td>
+      <td>FREE SLOT</td>
+      <td rowspan="6"><span>LUNCH</span></td>
+      <td>PYTHON</td>
+      <td>PYTHON</td>
+    </tr>
 
-        <tr>
-            <td>Tuesday</td>
-            <td>Free Slot</td>
-            <td>English</td>
-            <td>FWAD</td>
-            <td>Free Slot</td>
-        </tr>
+    <tr>
+      <td style="background-color: aqua;">TUESDAY</td>
+      <td>FREE SLOT</td>
+      <td>ENGLISH</td>
+      <td>FWAD</td>
+      <td>FREE SLOT</td>
+    </tr>
 
-        <tr>
-            <td>Wednesday</td>
-            <td>Free Slot</td>
-            <td>FWAD</td>
-            <td>Mentor Meet</td>
-            <td>Free Slot</td>
-        </tr>
+    <tr>
+      <td style="background-color: aqua;">WEDNESDAY</td>
+      <td>FREE SLOT</td>
+      <td>FWAD</td>
+      <td>MENTOR MEET</td>
+      <td>FREE SLOT</td>
+    </tr>
 
-        <tr>
-            <td>Thursday</td>
-            <td>Python</td>
-            <td>English</td>
-            <td>English</td>
-            <td>Free Slot</td>
-        </tr>
+    <tr>
+      <td style="background-color: aqua;">THURSDAY</td>
+      <td>PYTHON</td>
+      <td>ENGLISH</td>
+      <td>ENGLISH</td>
+      <td>FREE SLOT</td>
+    </tr>
 
-        <tr>
-            <td>Friday</td>
-            <td>Free Slot</td>
-            <td>FWAD</td>
-            <td>Free Slot</td>
-            <td>Python</td>
-        </tr>
+    <tr>
+      <td style="background-color: aqua;">FRIDAY</td>
+      <td>FREE SLOT</td>
+      <td>FWAD</td>
+      <td>FREE SLOT</td>
+      <td>PYTHON</td>
+    </tr>
 
-        <tr>
-            <td>Saturday</td>
-            <td colspan="2">FWAD</td>
-            <td>Python</td>
-            <td>English</td>
-        </tr>
+    <tr>
+      <td style="background-color: aqua;">SATURDAY</td>
+      <td>FWAD</td>
+      <td>FWAD</td>
+      <td>PYTHON</td>
+      <td>ENGLISH</td>
+    </tr>
+  </table>
 
-    </table>
-    <table>
-        <caption>Subject Codes</caption>
+  <table>
+    <tr>
+      <th>Subject</th>
+      <th>Sub-Code</th>
+    </tr>
 
-        <tr>
-            <th>Subject</th>
-            <th>Sub-Code</th>
-        </tr>
+    <tr>
+      <td>FWAD - Fundamentals of web application development</td>
+      <td>19AI414</td>
+    </tr>
 
-        <tr>
-            <td>FWAD - Fundamentals of Web Application Development</td>
-            <td>19AI414</td>
-        </tr>
+    <tr>
+      <td>Python - Programming</td>
+      <td>19AI301</td>
+    </tr>
 
-        <tr>
-            <td>Python Programming</td>
-            <td>19AI301</td>
-        </tr>
-
-        <tr>
-            <td>Communicative English</td>
-            <td>19EN101</td>
-        </tr>
-    </table>
+    <tr>
+      <td>Communicative English</td>
+      <td>19EN101</td>
+    </tr>
+  </table>
 
 </body>
-
 </html>
 ```
 # OUTPUT
